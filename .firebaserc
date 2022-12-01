@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "mti-group-96"
+  },
+  "targets": {
+    "mti-group-96": {
+      "hosting": {
+        "ngodings-employee": [
+          "employee.ngodings.com",
+          "ngodings-employee"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

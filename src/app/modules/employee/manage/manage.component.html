@@ -1,0 +1,114 @@
+<p-dialog [(visible)]="display" [modal]="true" [closable]="true" (onHide)="displayChange.emit(false)"
+  [draggable]="false" [style]="{width: '40vw'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+  <ng-template pTemplate="header">
+    <div class="font-bold">{{ type }} Employee</div>
+  </ng-template>
+
+  <div class="text-sm">
+    <ng-container *ngIf="employee">
+      <div class="flex items-center justify-between gap-4">
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Username:
+          </div>
+          <div class="w-full">
+            <input pInputText type="text" placeholder="Input Username" [(ngModel)]="employee.username" style="width: 100%;" required
+            class="p-column-filter">
+          </div>
+        </div>
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Email:
+          </div>
+          <div class="w-full">
+            <input pInputText type="text" placeholder="Input Email" [(ngModel)]="employee.email" style="width: 100%;" required
+            class="p-column-filter">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-4">
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            First Name:
+          </div>
+          <div class="w-full">
+            <input pInputText type="text" placeholder="Input First Name" [(ngModel)]="employee.firstName" style="width: 100%;" required
+            class="p-column-filter">
+          </div>
+        </div>
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Last Name:
+          </div>
+          <div class="w-full">
+            <input pInputText type="text" placeholder="Input Last Name" [(ngModel)]="employee.lastName" style="width: 100%;" required
+            class="p-column-filter">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="flex items-center justify-between gap-4">
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Status:
+          </div>
+          <div class="w-full">
+            <p-inputSwitch [(ngModel)]="employee.status"></p-inputSwitch>
+          </div>
+        </div>
+        <div class="mb-4 flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Group: 
+          </div>
+          <div class="w-full">
+            <p-dropdown [options]="groups" (onChange)="onChangeGroup($event)" [(ngModel)]="employee.group"
+              styleClass="p-column-filter" placeholder="Select a Group" [showClear]="false">
+              <ng-template let-option pTemplate="item">
+                <span [class]="'customer-badge status-' + option">{{ option }}</span>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4 flex flex-col items-start gap-2 w-full">
+        <div class="font-bold">
+          Description:
+        </div>
+        <div class="w-full">
+          <textarea pInputText type="text" placeholder="Input Description" [(ngModel)]="employee.description" style="width: 100%;" required
+          class="p-column-filter"></textarea>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Birth Date:
+          </div>
+          <div class="w-full">
+            <p-calendar [(ngModel)]="employee.birthDate"  [autoZIndex]="true" [baseZIndex]="100000"></p-calendar>
+          </div>
+        </div>
+        <div class="flex flex-col items-start gap-2 w-1/2">
+          <div class="font-bold">
+            Basic Salary:
+          </div>
+          <div class="w-full">
+            <p-inputNumber [(ngModel)]="employee.basicSalary" prefix="Rp. " mode="decimal" [minFractionDigits]="2"></p-inputNumber>
+          </div>
+        </div>
+      </div>
+      
+    </ng-container>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="flex gap-4 items-center justify-end">
+      <app-button [isRounded]="true" [title]="'Cancel'" (callback)="displayChange.emit(false)" [color]="color.primary" [isOutline]="true" [size]="size.md"></app-button>
+      <app-button [isRounded]="true" [title]="'Submit'" (callback)="submit()" [color]="color.primary" [size]="size.md"></app-button>
+    </div>
+  </ng-template>
+</p-dialog>

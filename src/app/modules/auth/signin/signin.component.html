@@ -1,0 +1,39 @@
+<div class="full-pages flex items-center justify-center signin-bg text-black">
+    <!-- <div class="bg-overlay"></div> -->
+    <div class="space-section">
+        <div class="signin text-center">
+            <div class="card bg-base-100 shadow-standard p-6 w-full rounded-lg">
+                <div class="text-2xl font-bold">
+                    Login
+                </div>
+
+                <div class="form-control w-full mt-2">
+                    <label class="label">
+                        <span class="label-text">Email *</span>
+                    </label>
+                    <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <i class="material-icons text-black text-sm">email</i>
+                        </div>
+                        <input type="text" placeholder="Email" class="input block p-4 pl-10 input-bordered w-full rounded-lg" [(ngModel)]="email" required />
+                    </div>
+                </div>
+
+                <div class="form-control w-full mt-2">
+                    <label class="label">
+                        <span class="label-text">Password *</span>
+                    </label>
+                    <div class="relative">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <i class="material-icons text-black text-sm">lock</i>
+                        </div>
+                        <input type="password" placeholder="Password" class="input block p-4 pl-10 input-bordered w-full rounded-lg" [(ngModel)]="password" required />
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <app-button [isRounded]="true" [title]="'Sign In'" [isFull]="true" (callback)="login()"></app-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

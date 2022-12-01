@@ -1,0 +1,56 @@
+@import 'color.scss';
+
+app-pages-employee {
+    .bg-image {
+        background: url(../../../assets/images/teamwork/group-people-working-out-business-plan-office.webp) center center;
+        position: relative;
+        background-size:     cover;                      
+        background-repeat:   no-repeat;
+        background-position: center center; 
+        object-fit: cover;
+
+    }
+    .header {
+        position: relative;
+        color: white;
+        z-index: 3;
+    }
+
+    .table-custom {
+        font-size: 12px !important;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        th {
+            font-size: 12px !important;
+        }
+        tr {
+            font-size: 12px !important;
+        }
+        td {
+            font-size: 12px !important;
+        }
+        p-dropdown, .dropdown {
+            font-size: 12px !important;
+            .p-dropdown {
+                font-size: 12px !important;
+                div {
+                    font-size: 12px !important;
+                }
+                span {
+                    font-size: 12px !important;
+                }
+            }
+        }
+        input {
+            font-size: 12px !important;
+        }
+        outline: none !important;
+    }
+
+    .p-datatable table {
+        width: 100%;
+    }
+    .danger {
+        color: red;
+    }
+}

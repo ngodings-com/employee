@@ -1,0 +1,138 @@
+<div class="bg-gray space-pages bg-image">
+  <div class="bg-overlay"></div>
+  <div class="p-layout header flex flex-col items-center">
+    <div class="text-2xl font-bold">
+      Employee Management
+    </div>
+    <div class="mt-4">
+      <app-breadcrumb></app-breadcrumb>
+    </div>
+  </div>
+</div>
+
+<div class="p-10">
+  <div class="flex-col flex w-full mt-10 justify-center">
+    <div class="flex justify-end items-end mb-4">
+      <app-button [isRounded]="true" [title]="'Add Employee'" (callback)="add()" [color]="color.primary" [size]="size.md"></app-button>
+    </div>
+    <p-table #dt [value]="employees" [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0" [rows]="10"
+      [responsive]="true"
+      [totalRecords]="employees.length" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+      [rowHover]="true" class="table-custom">
+      <ng-template pTemplate="header">
+        <tr>
+          <th [pSortableColumn]="'username'">
+            Username
+            <p-sortIcon [field]="'username'"></p-sortIcon>
+          </th>
+          <th [pSortableColumn]="'firstName'" style="min-width: 140px">First Name
+            <p-sortIcon [field]="'firstName'"></p-sortIcon>
+          </th>
+          <th [pSortableColumn]="'lastName'" style="min-width: 140px">Last Name
+            <p-sortIcon [field]="'lastName'"></p-sortIcon>
+          </th>
+          <th [pSortableColumn]="'email'">Email
+            <p-sortIcon [field]="'email'"></p-sortIcon>
+          </th>
+          <th [pSortableColumn]="'birthDate'" style="min-width: 140px">Birth Date
+            <p-sortIcon [field]="'birthDate'"></p-sortIcon>
+          </th>
+          <th [pSortableColumn]="'basicSalary'" style="min-width: 140px">Basic Salary
+            <p-sortIcon [field]="'basicSalary'"></p-sortIcon>
+          </th>
+          <!-- <th [pSortableColumn]="'status'" style="min-width: 140px">Status
+            <p-sortIcon [field]="'status'"></p-sortIcon>
+          </th> -->
+          <th [pSortableColumn]="'group'" style="min-width: 140px">Group
+            <p-sortIcon [field]="'group'"></p-sortIcon>
+          </th>
+          <!-- <th [pSortableColumn]="'description'">Description
+            <p-sortIcon [field]="'description'"></p-sortIcon>
+          </th> -->
+          <th>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <input pInputText type="text" (input)="onSearch($event, 'username')" placeholder="Search by Username"
+              class="p-column-filter">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="onSearch($event, 'firstName')" placeholder="Search by First Name"
+              class="p-column-filter">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="onSearch($event, 'lastName')" placeholder="Search by Last Name"
+              class="p-column-filter">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="onSearch($event, 'email')" placeholder="Search by Email"
+              class="p-column-filter">
+          </th>
+          <th>
+          </th>
+          <!-- <th>
+          </th>-->
+          <th>
+          </th> 
+          <th>
+            <p-dropdown [options]="groups" (onChange)="dt.filter($event.value, 'group', 'equals')"
+              styleClass="p-column-filter" placeholder="Select a Group" [showClear]="true">
+              <ng-template let-option pTemplate="item">
+                <span [class]="'customer-badge status-' + option">{{ option }}</span>
+              </ng-template>
+            </p-dropdown>
+          </th>
+          <!-- <th>
+            <input pInputText type="text" (input)="onSearch($event, 'description')" placeholder="Search by Description"
+              class="p-column-filter">
+          </th> -->
+          <th>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-employee>
+        <tr>
+          <td>
+            <span class="p-column-title font-bold">Username:</span>{{employee.username ?? '-'}}</td>
+          <td>
+            <span class="p-column-title font-bold">First Name:</span>{{employee.firstName ?? '-'}}</td>
+          <td>
+            <span class="p-column-title font-bold">Last Name:</span>{{employee.lastName ?? '-'}}</td>
+          <td>
+            <span class="p-column-title font-bold">Email:</span>{{employee.email ?? '-'}}</td>
+          <td>
+            <span class="p-column-title font-bold">Birth Date:</span>{{employee.birthDate | date : 'dd MMM yyyy'}}</td>
+          <td>
+            <span class="p-column-title font-bold">Basic Salary:</span>Rp. {{employee.basicSalary | number: '1.2-2'}}
+          </td>
+          <!-- <td>
+            <span class="p-column-title font-bold">Status:</span>{{employee.status ? 'Active' : 'Inactive' }}</td> -->
+          <td>
+            <span class="p-column-title font-bold">Group:</span>{{employee.group ?? '-'}}</td>
+          <!-- <td>
+            <span class="p-column-title font-bold">Description:</span>{{employee.description ?? '-'}}</td> -->
+          <td>
+            <div class="flex items-center gap-3">
+              <div class="pointer" (click)="editEmployee(employee)">
+                <i class="material-icons">edit</i>
+              </div>
+              <div class="pointer" (click)="detailEmployee(employee)">
+                <i class="material-icons">visibility</i>
+              </div>
+              <div class="pointer danger" (click)="deleteEmployee(employee)">
+                <i class="material-icons">delete</i>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<div class="mb-8"></div>
+
+<app-detail [(display)]="onDetail" [employee]="employeeSelected"></app-detail>
+<app-manage [(display)]="onEdit" [employee]="employeeSelected" [type]="manageType" [groups]="groups" (dataChange)="dataChange($event)" (createChange)="createChange($event)"></app-manage>

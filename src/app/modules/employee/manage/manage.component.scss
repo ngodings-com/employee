@@ -1,0 +1,21 @@
+@import 'color.scss';
+
+app-manage {
+    .manage {
+    }
+    p-calendar {
+        width: 100%;
+    }
+    .p-calendar {
+        width: 100%;
+    }
+    p-inputnumber {
+        width: 100%;
+        span {
+            width: 100%;
+        }
+    }
+    p-dropdown, .p-dropdown {
+        width: 100%;
+    }
+}

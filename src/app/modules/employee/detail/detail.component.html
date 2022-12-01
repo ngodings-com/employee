@@ -1,0 +1,94 @@
+<p-dialog [(visible)]="display" [modal]="true" [closable]="true" (onHide)="displayChange.emit(false)"
+  [draggable]="false" [style]="{width: '40vw'}" [breakpoints]="{'960px': '75vw', '640px': '100vw'}">
+  <ng-template pTemplate="header">
+    <div class="font-bold">Detail Employee</div>
+  </ng-template>
+
+  <div class="text-sm">
+    <ng-container *ngIf="employee">
+      <div class="mb-2 flex items-center gap-2 tex">
+        <div class="font-bold">
+          Username:
+        </div>
+        <div>
+          {{ employee.username }}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          First Name:
+        </div>
+        <div>
+          {{ employee.firstName }}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Last Name:
+        </div>
+        <div>
+          {{ employee.lastName}}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Email:
+        </div>
+        <div>
+          {{ employee.email }}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Birth Date:
+        </div>
+        <div>
+          {{employee.birthDate | date : 'dd MMM yyyy'}}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Basic Salary:
+        </div>
+        <div>
+          Rp. {{employee.basicSalary | number: '1.2-2'}}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Status:
+        </div>
+        <div>
+          {{employee.status ? 'Active' : 'Inactive' }}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Group:
+        </div>
+        <div>
+          {{employee.group }}
+        </div>
+      </div>
+
+      <div class="mb-2 flex items-center gap-2">
+        <div class="font-bold">
+          Description:
+        </div>
+        <div>
+          {{ employee.description }}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template pTemplate="footer">
+  </ng-template>
+</p-dialog>
